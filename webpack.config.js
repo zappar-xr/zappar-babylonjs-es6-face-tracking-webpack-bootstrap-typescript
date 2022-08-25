@@ -3,7 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 	entry: './src/index.ts',
-	devtool: "source-map",
 	output: {
 		path: path.resolve(__dirname, 'dist'),
 		filename: 'index.js'
@@ -13,12 +12,13 @@ module.exports = {
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
+			favicon: './src/favicon.png',
 			template: './src/index.html',
 			filename: 'index.html'
 		})
 	],
 	devServer: {
-		contentBase: './dist',
+		static: './dist',
 		https: true,
 		host: '0.0.0.0'
 	},
@@ -28,12 +28,7 @@ module.exports = {
 			{
 				test: /\.css$/i,
 				use: ['style-loader', 'css-loader'],
-			},
-			{
-				test: /zcv\.wasm$/,
-				type: "javascript/auto",
-				loader: "file-loader"
-			},
+			}
 		]
 	}
 };
